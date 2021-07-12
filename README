@@ -1,0 +1,90 @@
+Problem that we are trying to solve: We are building a postfix desk calculator which is similar to the command dc one in Linux.
+
+The input that the client program uses is the user input that is entered on the command line. The user input is then stored into an array of
+chracters and is processed one line at a time. The output of the program is the results of the various operations and commands that the user 
+inputted and any error messages for any exceptions that occur.
+
+We are using iostream, cstring, cctype, string, stdio.h, and stdlib.h, which are inbuilt from the standard library in the
+client file. We are also using stack.h and dsexceptions.h, which is being implemented from classes that I created in the client file. 
+Dexceptions.h uses several classes including Underflow, Overflow, DivisionByZero, and InvalidExpression. Objects of Underflow can see if the
+stack is empty. Objects of Overflow can see if the stack is full. DivisionByZero objects can see if division by zero occurs. The 
+InvalidExpression objects can see if the expression entered by the user is valid.
+
+
+I first created methods for each respective command and operators. The commands are p,n,f,c,d,and r. The operators are addition(+), 
+subtraction(-),multiplication(*), division(/), and modulus(%)(gets the remainder).
+
+For the command p method, I took a stack of integers as a parameter. Command p is supposed to print the value at the top of the stack and 
+print a new value after. So, I only print the value at the top of the stack if the stack is not empty. If, it is empty, then I print an error 
+message to the screen saying that it is an illegal pop.
+
+For the command n method, I took a stack of integers as a parameter. Command n is supposed to print the value on the top of the stack and 
+pop the value off the stack, and it does not print another line after. So, I only print the top of the stack and pop off the top value
+only if the stack is not empty. If it is empty, then I print an error message to the screen saying that it is an illegal pop.
+
+
+For the command f method, I took a stack of integers as a parameter. Commmand f is supposed to print the entire contents of the stack 
+without alterting anything, and a new line is supposed ot print after each value. I only print the contents of the stack if it is not empty
+if it is empty then I don't print anything.
+
+For the command c method, I took a stack of integers as a parameter. Commmand c is supposed to clear all the contents of the stack. It
+does not print anything to the screen when it occurs.
+
+For the command d method, I took a stack of integers as a parameter. Command d is supposed to duplicate the value at the top of the stack.
+If the stack is empty, it will print an error message to the screen saying that it is an illegal pop. If the stack is full, then it will
+print an error message to the screens aying that it is an a illegal push.
+
+For the command r method, I took a stack of integers as a parameter. Commmand r is supposed to reverse the two values on the top of the stack.If the stack is empty, it will print an error message to the screen saying that it is an illegal pop.
+
+For the addition method, I took a stack of integers as a parameter. It pops off the first two values on the stack and adds them and then
+pushes the result on to the stack.
+
+For the subtraction method, I took a stack of integers as a parameter. It pops off the first two values on the stack and subtracts them 
+and then pushes the result on to the stack.
+
+For the multiplication method, I took a stack of integers as a parameter. It pops off the first two values on the stack and multiplies them
+and then pushes the result on to the stack.
+
+For the division method, I took a stack of integers as a parameter. It pops off the first two values on the stack and divides them
+and then pushes the result on to the stack.
+
+For the modulus method, I took a stack of integers as a parameter. It pops off the first two values on the stack and gives the remainder of 
+them and then pushes the result on to the stack.
+
+I created methods for isOperator, isCommand, isUnderscore, isValidOperation, and isValidExpression.
+
+For the isOperator method, I took a character as a parameter, and I checked to see if it was a (+,-,*,/,%) sign. If there was I returned true,
+else I returned false.
+
+For the isCommand method, I took a character as a parameter, and I checked to see if it was a (p,n,f,c,d,r) letter. 
+If it was any of those options I returned true, else I returned false.
+
+For the isUnderscore method, I took a character as a parameter, and I check to see if was an underscore. If it was then, I converted it into
+a string and return true or else I would return false.
+
+For the isValidOperation method, I took a character as a parameter, and I checked if it was an operator, command, underscore, digit, or space by calling methods I made or in build methods in cstring.
+
+For the isValidExpression method, I took an array of characters as a parameter, and I created an integer to keep track of how many invalid
+characters appear. Then, I used a for loop to go through the array and see if it has valid characters. If it is not a valid character, then
+it increments the integer. Then, I test to see if it greater than 1 if it is greater then one I return false. If it is zero, then I return 
+true.
+
+I also have two methods called inputLine and processLine. 
+
+The inputLine method takes an integer stack as a parameter. It then goes through receives input from the user until they hit control D and 
+calls the processLine method.
+
+The processLine method processes each character in the array and performs the appropriate command, operation, or pushing digits on the stack.
+
+
+I also have two methods for running commands and running operators.
+
+For the running commands method, I take a stack of integers and a character. I use a switch statement in this method to see if it matches and
+run the appropriate method for that command.
+
+For the running operators method, I take a stack of integers and a character. I use a switch statement in this method to see if it matches and
+run the appropriate method for that operator.
+
+
+In my main method, I declare an integer of stacks and then call my inputLine method. Then, in my input line method I declare a string and
+start receiving user input. Then, I call the processLine method and my program runs until there is no more user input.
